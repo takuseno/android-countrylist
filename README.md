@@ -40,4 +40,4 @@ Country country = CountryList.getCountryByCode(context, "JP");
 ```
 
 ##Country List
-If you add other countries, please modify [country_list.csv]("https://github.com/takuseno/android-countrylist/blob/master/countrylist/src/main/res/raw/country_code.csv").
+If you add other countries, please modify [country_code.csv](https://github.com/takuseno/android-countrylist/blob/master/countrylist/src/main/res/raw/country_code.csv).
