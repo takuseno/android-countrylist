@@ -39,5 +39,14 @@ Country country = CountryList.getCountryByName(context, "Japan");
 Country country = CountryList.getCountryByCode(context, "JP");
 ```
 
+Now, English and Japanese country data files are available.
+If you change name language, you should use following code.
+```java
+CountryList.dataLanguage = DataLanguage.Japanese;
+List<Country> countries = CountryList.getCountries(context);
+```
+
 ##Country List
 If you add other countries, please modify [country_code.csv](https://github.com/takuseno/android-countrylist/blob/master/countrylist/src/main/res/raw/country_code.csv).
+
+And if you add other language data file, you have to check out "CountryList.getFileId".
