@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.gr.java_conf.androtaku.countrylist:countrylist:1.0.0'
+    compile 'jp.gr.java_conf.androtaku.countrylist:countrylist:1.1.0'
 }
 ```
 
