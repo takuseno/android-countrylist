@@ -1,6 +1,7 @@
 package jp.gr.java_conf.androtaku.countrylist;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 
 import java.io.BufferedReader;
@@ -15,12 +16,14 @@ import java.util.List;
  */
 public class CountryList {
 
+    static public DataLanguage dataLanguage = DataLanguage.ENGLISH;
+
     /**
      * get all country names
      * @return List<String> names of countries
      */
     static public List<String> getCountryNames(Context context){
-        InputStream inputStream = context.getResources().openRawResource(R.raw.country_code);
+        InputStream inputStream = context.getResources().openRawResource(getFileId());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         List<String> names = new ArrayList<>();
         String tempString;
@@ -43,7 +46,7 @@ public class CountryList {
      * @return List<String> codes of countries
      */
     static public List<String> getCountryCodes(Context context){
-        InputStream inputStream = context.getResources().openRawResource(R.raw.country_code);
+        InputStream inputStream = context.getResources().openRawResource(getFileId());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         List<String> codes = new ArrayList<>();
         String tempString;
@@ -66,7 +69,7 @@ public class CountryList {
      * @return List<Country> country object list
      */
     static public List<Country> getCountries(Context context){
-        InputStream inputStream = context.getResources().openRawResource(R.raw.country_code);
+        InputStream inputStream = context.getResources().openRawResource(getFileId());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         List<Country> countries = new ArrayList<>();
         String tempString;
@@ -95,7 +98,7 @@ public class CountryList {
      */
     @Nullable
     static public String convertNameToCode(Context context, String name){
-        InputStream inputStream = context.getResources().openRawResource(R.raw.country_code);
+        InputStream inputStream = context.getResources().openRawResource(getFileId());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String tempString;
         try {
@@ -120,7 +123,7 @@ public class CountryList {
      */
     @Nullable
     static public String convertCodeToName(Context context, String code){
-        InputStream inputStream = context.getResources().openRawResource(R.raw.country_code);
+        InputStream inputStream = context.getResources().openRawResource(getFileId());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String tempString;
         try {
@@ -145,7 +148,7 @@ public class CountryList {
      */
     @Nullable
     static public Country getCountryByName(Context context, String name){
-        InputStream inputStream = context.getResources().openRawResource(R.raw.country_code);
+        InputStream inputStream = context.getResources().openRawResource(getFileId());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String tempString;
         try {
@@ -174,7 +177,7 @@ public class CountryList {
      */
     @Nullable
     static public Country getCountryByCode(Context context, String code){
-        InputStream inputStream = context.getResources().openRawResource(R.raw.country_code);
+        InputStream inputStream = context.getResources().openRawResource(getFileId());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String tempString;
         try {
@@ -194,5 +197,21 @@ public class CountryList {
         }
 
         return null;
+    }
+
+    static private int getFileId(){
+        int id;
+        switch(dataLanguage){
+            case ENGLISH:
+                id = R.raw.country_code;
+                break;
+            case JAPANESE:
+                id = R.raw.country_code_jp;
+                break;
+            default:
+                id = R.raw.country_code;
+                break;
+        }
+        return id;
     }
 }
